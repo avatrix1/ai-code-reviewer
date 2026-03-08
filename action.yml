@@ -1,0 +1,28 @@
+name: 'AI Code Reviewer'
+description: 'AI-powered code review using Claude. Automatically reviews PRs and posts inline comments.'
+author: 'Avatrix LLC'
+
+branding:
+  icon: 'eye'
+  color: 'purple'
+
+inputs:
+  anthropic_api_key:
+    description: 'Your Anthropic API key. Required for private repos. Public repos use a shared key with rate limiting.'
+    required: false
+  github_token:
+    description: 'GitHub token for posting review comments. Defaults to the automatic GITHUB_TOKEN.'
+    required: false
+    default: ${{ github.token }}
+  model:
+    description: 'Claude model to use.'
+    required: false
+    default: 'claude-sonnet-4-20250514'
+  max_files:
+    description: 'Maximum number of changed files to review.'
+    required: false
+    default: '15'
+
+runs:
+  using: 'node20'
+  main: 'index.js'
